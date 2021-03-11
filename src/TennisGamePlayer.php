@@ -10,6 +10,10 @@ class TennisGamePlayer
     private string $secondPlayerName;
     private int $firstPlayerScore;
     private int $secondPlayerScore;
+    private int $firstPlayerTimesScored;
+    private int $secondPlayerTimesScored;
+    private array $timesScoredToScoreRelation = ["1"=>15, "2"=>30,"3"=>40];
+
 
     /**
      * TennisGamePlayer constructor.
@@ -24,6 +28,8 @@ class TennisGamePlayer
         $this->secondPlayerName = $secondPlayerName;
         $this->firstPlayerScore = 0;
         $this->secondPlayerScore = 0;
+        $this->firstPlayerTimesScored = 0;
+        $this->secondPlayerTimesScored = 0;
     }
     public function getScore ()
     {
@@ -48,7 +54,7 @@ class TennisGamePlayer
     {
         if($playerWhoWinName == $this->firstPlayerName)
         {
-            $this->firstPlayerScore = $this->firstPlayerScore + 15;
+            $this->firstPlayerTimesScored = $this->firstPlayerTimesScored + 1;
         }
     }
 

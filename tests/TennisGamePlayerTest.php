@@ -31,4 +31,15 @@ final class TennisGamePlayerTest extends TestCase
         $resultScore = $gamePlayer->getScore();
         $this->assertEquals("Fifteen - Love", $resultScore);
     }
+
+    /**
+     * @test
+     */
+    public function shouldWonOnePointPlayerTwo()
+    {
+        $gamePlayer = new TennisGamePlayer("Player1","Player2");
+        $gamePlayer->wonPoint("Player2");
+        $resultScore = $gamePlayer->getScore();
+        $this->assertEquals("Love - Fifteen", $resultScore);
+    }
 }
