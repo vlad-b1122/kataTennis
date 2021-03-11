@@ -17,7 +17,17 @@ final class TennisGamePlayerTest extends TestCase
     public function shouldShow_0_0_Score()
     {
         $gamePlayer = new TennisGamePlayer("Player1","Player2");
-        $result = $gamePlayer->getScore();
-        $this->assertEquals("Love all", $result);
+        $resultScore = $gamePlayer->getScore();
+        $this->assertEquals("Love all", $resultScore);
+    }
+    /**
+     * @test
+     */
+    public function shouldWonOnePointPlayerOne()
+    {
+        $gamePlayer = new TennisGamePlayer("Player1","Player2");
+        $gamePlayer->wonPoint("Player1");
+        $resultScore = $gamePlayer->getScore();
+        $this->assertEquals("Fifteen - Love", $resultScore);
     }
 }
