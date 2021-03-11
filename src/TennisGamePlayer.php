@@ -54,6 +54,18 @@ class TennisGamePlayer
                 return "Deuce";
             }
         }
+        if($this->firstPlayerTimesScored != $this->secondPlayerTimesScored)
+        {
+            if($this->firstPlayerTimesScored > 2)
+            {
+                return  "Win " . $this->firstPlayerName;
+            }
+            if($this->secondPlayerTimesScored > 2)
+            {
+                return  "Win " . $this->secondPlayerName;
+            }
+        }
+
         $firstPlayerTemporalText = "";
         $secondPlayerTemporalText = "";
         foreach($this->scoreToTextRelation as $score => $text)
