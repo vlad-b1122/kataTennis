@@ -12,6 +12,7 @@ class TennisGamePlayer
     private int $secondPlayerScore;
     private int $firstPlayerTimesScored;
     private int $secondPlayerTimesScored;
+    private int $advantage;
     private bool $hadDeuce;
     private array $timesScoredToScoreRelation;
 
@@ -34,6 +35,7 @@ class TennisGamePlayer
         $this->timesScoredToScoreRelation = [1=>15, 2=>30,3=>40];
         $this->scoreToTextRelation = [0=>"Love",15=>"Fifteen", 30=>"Thirty",40=>"Forty"];
         $this->hadDeuce = false;
+        $this->advantage = 0;
     }
     public function getScore ()
     {
@@ -77,6 +79,15 @@ class TennisGamePlayer
             {
                 return "Advantage " . $this->secondPlayerName;
             }
+            if($this->firstPlayerTimesScored == ($this->secondPlayerTimesScored + 2))
+            {
+                return "Win " . $this->firstPlayerName;
+            }
+            if($this->secondPlayerTimesScored == ($this->firstPlayerTimesScored + 2))
+            {
+                return "Win " . $this->secondPlayerName;
+            }
+
         }
 
         $firstPlayerTemporalText = "";
@@ -99,6 +110,10 @@ class TennisGamePlayer
     {
         if($playerWhoWonPointName == $this->firstPlayerName)
         {
+            if(($this->hadDeuce == true)&&($this->advantage == 0))
+            {
+                $this->advantage = 1;
+            }
             $this->firstPlayerTimesScored = $this->firstPlayerTimesScored + 1;
             foreach($this->timesScoredToScoreRelation as $timesScored => $actualScore)
             {
@@ -110,6 +125,10 @@ class TennisGamePlayer
         }
         if($playerWhoWonPointName == $this->secondPlayerName)
         {
+            if(($this->hadDeuce == true)&&($this->advantage == 0))
+            {
+                $this->advantage = 2;
+            }
             $this->secondPlayerTimesScored = $this->secondPlayerTimesScored + 1;
             foreach($this->timesScoredToScoreRelation as $timesScored => $actualScore)
             {
