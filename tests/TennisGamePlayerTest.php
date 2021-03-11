@@ -176,4 +176,12 @@ final class TennisGamePlayerTest extends TestCase
         $resultScore = $gamePlayer->getScore();
         $this->assertEquals("Win Player2", $resultScore);
     }
+    /**
+     * @test
+     */
+    public function shouldSayTheNameDoesntMatch()
+    {
+        $gamePlayer = new TennisGamePlayer("Player1","Player2");
+        $gamePlayer->wonPoint("Player3");
+    }
 }
