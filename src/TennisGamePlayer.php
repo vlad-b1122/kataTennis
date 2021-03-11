@@ -35,9 +35,16 @@ class TennisGamePlayer
     }
     public function getScore ()
     {
-        if(($this->firstPlayerTimesScored == $this->secondPlayerTimesScored) && ($this->firstPlayerTimesScored== 0))
+        if($this->firstPlayerTimesScored == $this->secondPlayerTimesScored)
         {
-            return "Love all";
+            if($this->firstPlayerTimesScored == 0)
+            {
+                return "Love all";
+            }
+            if($this->firstPlayerTimesScored == 1)
+            {
+                return "Fifteen all";
+            }
         }
         $firstPlayerTemporalText = "";
         $secondPlayerTemporalText = "";
