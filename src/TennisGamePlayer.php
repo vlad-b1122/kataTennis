@@ -49,6 +49,10 @@ class TennisGamePlayer
             {
                 return "Thirty all";
             }
+            if($this->firstPlayerTimesScored > 2)
+            {
+                return "Deuce";
+            }
         }
         $firstPlayerTemporalText = "";
         $secondPlayerTemporalText = "";
