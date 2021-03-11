@@ -82,4 +82,19 @@ final class TennisGamePlayerTest extends TestCase
         $resultScore = $gamePlayer->getScore();
         $this->assertEquals("Deuce", $resultScore);
     }
+    /**
+     * @test
+     */
+    public function shouldShowIfSomeoneWins()
+    {
+        $gamePlayer = new TennisGamePlayer("Player1","Player2");
+        $gamePlayer->wonPoint("Player1");
+        $gamePlayer->wonPoint("Player2");
+        $gamePlayer->wonPoint("Player1");
+        $gamePlayer->wonPoint("Player2");
+        $gamePlayer->wonPoint("Player1");
+        $gamePlayer->wonPoint("Player1");
+        $resultScore = $gamePlayer->getScore();
+        $this->assertEquals("Win Player1", $resultScore);
+    }
 }
