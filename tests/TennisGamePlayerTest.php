@@ -151,4 +151,27 @@ final class TennisGamePlayerTest extends TestCase
         $resultScore = $gamePlayer->getScore();
         $this->assertEquals("Deuce", $resultScore);
     }
+    /**
+     * @test
+     */
+    public function shouldWinAfterAdvantageAndDeuce()
+    {
+        $gamePlayer = new TennisGamePlayer("Player1","Player2");
+        $gamePlayer->wonPoint("Player1");
+        $gamePlayer->wonPoint("Player2");
+        $gamePlayer->wonPoint("Player1");
+        $gamePlayer->wonPoint("Player2");
+        $gamePlayer->wonPoint("Player1");
+        $gamePlayer->wonPoint("Player2");
+        $gamePlayer->wonPoint("Player1");
+        $resultScore = $gamePlayer->getScore();
+        $this->assertEquals("Advantage Player1", $resultScore);
+        $gamePlayer->wonPoint("Player2");
+        $resultScore = $gamePlayer->getScore();
+        $this->assertEquals("Deuce", $resultScore);
+        $gamePlayer->wonPoint("Player2");
+        $this->assertEquals("Advantage Player2", $resultScore);
+        $gamePlayer->wonPoint("Player2");
+        $this->assertEquals("Win Player2", $resultScore);
+    }
 }
