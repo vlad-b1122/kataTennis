@@ -27,12 +27,29 @@ class TennisGamePlayer
     }
     public function getScore ()
     {
-        return "Love all";
+        if($this->firstPlayerScore == $this->secondPlayerScore)
+        {
+            if($this->firstPlayerScore == 0)
+            {
+                return "Love all";
+            }
+        }
+        if($this->firstPlayerScore != $this->secondPlayerScore)
+        {
+            if(($this->firstPlayerScore == 15) && ($this->secondPlayerScore == 0))
+            {
+                return("Fifteen - Love");
+            }
+        }
+
     }
 
-    public function wonPoint()
+    public function wonPoint(String $playerWhoWinName)
     {
-
+        if($playerWhoWinName == $this->firstPlayerName)
+        {
+            $this->firstPlayerScore = $this->firstPlayerScore + 15;
+        }
     }
 
 }

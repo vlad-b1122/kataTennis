@@ -20,6 +20,7 @@ final class TennisGamePlayerTest extends TestCase
         $resultScore = $gamePlayer->getScore();
         $this->assertEquals("Love all", $resultScore);
     }
+
     /**
      * @test
      */
