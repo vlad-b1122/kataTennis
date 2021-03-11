@@ -170,8 +170,10 @@ final class TennisGamePlayerTest extends TestCase
         $resultScore = $gamePlayer->getScore();
         $this->assertEquals("Deuce", $resultScore);
         $gamePlayer->wonPoint("Player2");
+        $resultScore = $gamePlayer->getScore();
         $this->assertEquals("Advantage Player2", $resultScore);
         $gamePlayer->wonPoint("Player2");
+        $resultScore = $gamePlayer->getScore();
         $this->assertEquals("Win Player2", $resultScore);
     }
 }
