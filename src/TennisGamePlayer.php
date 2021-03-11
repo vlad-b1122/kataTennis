@@ -82,9 +82,9 @@ class TennisGamePlayer
         return $firstPlayerTemporalText . " - " . $secondPlayerTemporalText;
     }
 
-    public function wonPoint(String $playerWhoWinName)
+    public function wonPoint(String $playerWhoWonPointName)
     {
-        if($playerWhoWinName == $this->firstPlayerName)
+        if($playerWhoWonPointName == $this->firstPlayerName)
         {
             $this->firstPlayerTimesScored = $this->firstPlayerTimesScored + 1;
             foreach($this->timesScoredToScoreRelation as $timesScored => $actualScore)
@@ -95,7 +95,7 @@ class TennisGamePlayer
                 }
             }
         }
-        if($playerWhoWinName == $this->secondPlayerName)
+        if($playerWhoWonPointName == $this->secondPlayerName)
         {
             $this->secondPlayerTimesScored = $this->secondPlayerTimesScored + 1;
             foreach($this->timesScoredToScoreRelation as $timesScored => $actualScore)
