@@ -12,7 +12,7 @@ class TennisGamePlayer
     private int $secondPlayerScore;
     private int $firstPlayerTimesScored;
     private int $secondPlayerTimesScored;
-    private array $timesScoredToScoreRelation = ["1"=>15, "2"=>30,"3"=>40];
+    private array $timesScoredToScoreRelation;
 
 
     /**
@@ -30,24 +30,29 @@ class TennisGamePlayer
         $this->secondPlayerScore = 0;
         $this->firstPlayerTimesScored = 0;
         $this->secondPlayerTimesScored = 0;
+        $this->timesScoredToScoreRelation = [1=>15, 2=>30,3=>40];
+        $this->scoreToTextRelation = [0=>"Love",15=>"Fifteen", 30=>"Thirty",40=>"Forty"];
     }
     public function getScore ()
     {
-        if($this->firstPlayerScore == $this->secondPlayerScore)
+        if(($this->firstPlayerTimesScored == $this->secondPlayerTimesScored) && ($this->firstPlayerTimesScored== 0))
         {
-            if($this->firstPlayerScore == 0)
+            return "Love all";
+        }
+        $firstPlayerTemporalText = "";
+        $secondPlayerTemporalText = "";
+        foreach($this->scoreToTextRelation as $score => $text)
+        {
+            if($this->firstPlayerScore == $score)
             {
-                return "Love all";
+                $firstPlayerTemporalText = $text;
+            }
+            if($this->secondPlayerScore == $score)
+            {
+                $secondPlayerTemporalText = $text;
             }
         }
-        if($this->firstPlayerScore != $this->secondPlayerScore)
-        {
-            if(($this->firstPlayerScore == 15) && ($this->secondPlayerScore == 0))
-            {
-                return("Fifteen - Love");
-            }
-        }
-
+        return $firstPlayerTemporalText . " - " . $secondPlayerTemporalText;
     }
 
     public function wonPoint(String $playerWhoWinName)
@@ -55,6 +60,24 @@ class TennisGamePlayer
         if($playerWhoWinName == $this->firstPlayerName)
         {
             $this->firstPlayerTimesScored = $this->firstPlayerTimesScored + 1;
+            foreach($this->timesScoredToScoreRelation as $timesScored => $actualScore)
+            {
+                if($this->firstPlayerTimesScored == $timesScored)
+                {
+                    $this->firstPlayerScore =  $actualScore;
+                }
+            }
+        }
+        if($playerWhoWinName == $this->secondPlayerName)
+        {
+            $this->secondPlayerTimesScored = $this->secondPlayerTimesScored + 1;
+            foreach($this->timesScoredToScoreRelation as $timesScored => $actualScore)
+            {
+                if($this->secondPlayerTimesScored == $timesScored)
+                {
+                    $this->secondPlayerScore =  $actualScore;
+                }
+            }
         }
     }
 
