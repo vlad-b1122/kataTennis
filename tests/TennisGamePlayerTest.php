@@ -54,6 +54,9 @@ final class TennisGamePlayerTest extends TestCase
         $resultScore = $gamePlayer->getScore();
         $this->assertEquals("Fifteen all", $resultScore);
     }
+    /**
+     * @test
+     */
     public function shouldShowIfAll30()
     {
         $gamePlayer = new TennisGamePlayer("Player1","Player2");
