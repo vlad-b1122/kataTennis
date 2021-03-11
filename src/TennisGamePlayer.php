@@ -35,57 +35,57 @@ class TennisGamePlayer
     }
     public function getScore ()
     {
-        if(($this->firstPlayerTimesScored == $this->secondPlayerTimesScored) && ($this->hadDeuce == false))
+        if($this->hadDeuce == false)
         {
-            if($this->firstPlayerTimesScored == 0)
-            {
-                return "Love all";
-            }
-            if($this->firstPlayerTimesScored == 1)
-            {
-                return "Fifteen all";
-            }
-            if($this->firstPlayerTimesScored == 2)
-            {
-                return "Thirty all";
-            }
+            return $this->beforeDeuceScoreHandler();
         }
-        if(($this->hadDeuce == false) && ($this->firstPlayerTimesScored != $this->secondPlayerTimesScored))
-        {
-            if($this->firstPlayerTimesScored > 2)
-            {
-                return  "Win " . $this->firstPlayerName;
-            }
-            if($this->secondPlayerTimesScored > 2)
-            {
-                return  "Win " . $this->secondPlayerName;
-            }
-        }
+
         if(($this->hadDeuce == true))
         {
-            if($this->firstPlayerTimesScored == ($this->secondPlayerTimesScored + 1))
-            {
-                return "Advantage " . $this->firstPlayerName;
-            }
-            if($this->secondPlayerTimesScored == ($this->firstPlayerTimesScored + 1))
-            {
-                return "Advantage " . $this->secondPlayerName;
-            }
-            if($this->firstPlayerTimesScored == ($this->secondPlayerTimesScored + 2))
-            {
-                return "Win " . $this->firstPlayerName;
-            }
-            if($this->secondPlayerTimesScored == ($this->firstPlayerTimesScored + 2))
-            {
-                return "Win " . $this->secondPlayerName;
-            }
-            if($this->firstPlayerTimesScored == $this->secondPlayerTimesScored)
-            {
-                return "Deuce";
-            }
+            return $this->afterDeuceScoreHandler();
 
         }
-
+    }
+    private function beforeDeuceScoreHandler(): string
+    {
+        if($this->firstPlayerTimesScored == $this->secondPlayerTimesScored)
+        {
+            return $this->beforeDeuceEqualsScoreHandler();
+        }
+        if(($this->firstPlayerTimesScored != $this->secondPlayerTimesScored) && (($this->firstPlayerTimesScored > 2) || ($this->secondPlayerTimesScored > 2)))
+        {
+            return $this->beforeDeuceWinnerScoreHandler();
+        }
+        return $this->beforeDeuceNumeralScoreHandler();
+    }
+    private function beforeDeuceEqualsScoreHandler(): string
+    {
+        if($this->firstPlayerTimesScored == 0)
+        {
+            return "Love all";
+        }
+        if($this->firstPlayerTimesScored == 1)
+        {
+            return "Fifteen all";
+        }
+        if($this->firstPlayerTimesScored == 2)
+        {
+            return "Thirty all";
+        }
+    }
+    private function beforeDeuceWinnerScoreHandler(): string
+    {
+        if($this->firstPlayerTimesScored > 2)
+        {
+            return  "Win " . $this->firstPlayerName;
+        }
+        if($this->secondPlayerTimesScored > 2)
+        {
+            return  "Win " . $this->secondPlayerName;
+        }
+    }
+    private function beforeDeuceNumeralScoreHandler(): string
+    {
         $firstPlayerTemporalText = "";
         $secondPlayerTemporalText = "";
         foreach($this->scoreToTextRelation as $score => $text)
@@ -100,6 +100,29 @@ class TennisGamePlayer
             }
         }
         return $firstPlayerTemporalText . " - " . $secondPlayerTemporalText;
+    }
+    private function afterDeuceScoreHandler(): string
+    {
+        if($this->firstPlayerTimesScored == ($this->secondPlayerTimesScored + 1))
+        {
+            return "Advantage " . $this->firstPlayerName;
+        }
+        if($this->secondPlayerTimesScored == ($this->firstPlayerTimesScored + 1))
+        {
+            return "Advantage " . $this->secondPlayerName;
+        }
+        if($this->firstPlayerTimesScored == ($this->secondPlayerTimesScored + 2))
+        {
+            return "Win " . $this->firstPlayerName;
+        }
+        if($this->secondPlayerTimesScored == ($this->firstPlayerTimesScored + 2))
+        {
+            return "Win " . $this->secondPlayerName;
+        }
+        if($this->firstPlayerTimesScored == $this->secondPlayerTimesScored)
+        {
+            return "Deuce";
+        }
     }
 
     public function wonPoint(String $playerWhoWonPointName)
