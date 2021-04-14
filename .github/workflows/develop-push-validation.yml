@@ -1,8 +1,8 @@
 name: develop-push-validation
 on: 
 	[push]
-		branches:
-			- develop
+  branches:
+    - develop
 jobs:
   validate:
     runs-on: ubuntu-latest
