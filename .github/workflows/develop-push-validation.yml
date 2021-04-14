@@ -1,0 +1,13 @@
+name: develop-push-validation
+on: [push]
+	branch:
+		- develop
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout develop
+      - uses: actions/checkout@v2
+      - name: Check files
+      - run: ls -al
+
