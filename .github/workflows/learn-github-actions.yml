@@ -1,7 +1,10 @@
-name: learn-to-ls-after-pull
+name: pull-second-test
 on: [pull]
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
-      - run: ls -al
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: ls
+
