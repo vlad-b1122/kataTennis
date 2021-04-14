@@ -1,4 +1,4 @@
-name: pull-second-test
+name: push-second-test
 on: [push]
 jobs:
   check-bats-version:
