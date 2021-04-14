@@ -1,5 +1,5 @@
 name: learn-to-ls-after-pull
-on: [pulll]
+on: [pull]
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
