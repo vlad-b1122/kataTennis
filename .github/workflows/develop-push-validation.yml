@@ -1,6 +1,6 @@
 name: develop-push-validation
 on: 
-	[push]
+  push:
   branches:
     - develop
 jobs:
