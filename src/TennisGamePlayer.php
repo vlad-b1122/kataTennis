@@ -2,8 +2,6 @@
 
 
 namespace Deg540\PHPTestingBoilerplate;
-
-
 class TennisGamePlayer
 {
     private string $firstPlayerName;

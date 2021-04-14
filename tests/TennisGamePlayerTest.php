@@ -4,8 +4,6 @@
 declare(strict_types=1);
 
 namespace Deg540\PHPTestingBoilerplate\Test;
-
-
 use Deg540\PHPTestingBoilerplate\TennisGamePlayer;
 use PHPUnit\Framework\TestCase;
 
